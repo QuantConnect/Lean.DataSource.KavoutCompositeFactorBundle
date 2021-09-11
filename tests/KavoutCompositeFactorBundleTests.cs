@@ -27,8 +27,39 @@ using QuantConnect.DataSource;
 namespace QuantConnect.DataLibrary.Tests
 {
     [TestFixture]
-    public class MyCustomDataTypeTests
+    public class KavoutCompositeFactorBundleTests 
     {
+        [Test]
+        public void ReaderTest()
+        {
+            var factory = new KavoutCompositeFactorBundle();
+            var config = new SubscriptionDataConfig(
+                typeof(object),
+                Symbol.Create("AAPL", SecurityType.Equity, Market.USA),
+                Resolution.Daily,
+                TimeZones.NewYork,
+                TimeZones.NewYork,
+                false,
+                false,
+                false,
+                true);
+
+            var line = "20210909,4,5,6,7,8";
+            var expected = (KavoutCompositeFactorBundle) CreateNewInstance();
+            var actual = (KavoutCompositeFactorBundle) factory.Reader(config, line, new DateTime(2021, 9, 10), false);
+            
+            Assert.AreEqual(expected.Growth, actual.Growth);
+            Assert.AreEqual(expected.ValueFactor, actual.ValueFactor);
+            Assert.AreEqual(expected.Quality, actual.Quality);
+            Assert.AreEqual(expected.Momentum, actual.Momentum);
+            Assert.AreEqual(expected.LowVolatility, actual.LowVolatility);
+            
+            Assert.AreEqual(expected.Time, actual.Time);
+            Assert.AreEqual(expected.EndTime, actual.EndTime);
+            Assert.AreEqual(expected.Symbol, actual.Symbol);
+            
+        }
+        
         [Test]
         public void JsonRoundTrip()
         {
@@ -87,12 +118,17 @@ namespace QuantConnect.DataLibrary.Tests
 
         private BaseData CreateNewInstance()
         {
-            return new MyCustomDataType
+            return new KavoutCompositeFactorBundle
             {
-                Symbol = Symbol.Empty,
-                Time = DateTime.Today,
-                DataType = MarketDataType.Base,
-                SomeCustomProperty = "This is some market related information"
+                Growth = 4m,
+                ValueFactor = 5m,
+                Quality = 6m,
+                Momentum = 7m,
+                LowVolatility = 8m,
+                
+                Time = new DateTime(2021, 9, 9),
+                EndTime = new DateTime(2021, 9, 10),
+                Symbol = Symbol.Create("AAPL", SecurityType.Equity, Market.USA)
             };
         }
     }
