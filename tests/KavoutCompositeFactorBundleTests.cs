@@ -23,12 +23,21 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using QuantConnect.Data;
 using QuantConnect.DataSource;
+using QuantConnect.Util;
+using QuantConnect.Interfaces;
+using QuantConnect.Data.Auxiliary;
 
 namespace QuantConnect.DataLibrary.Tests
 {
     [TestFixture]
     public class KavoutCompositeFactorBundleTests 
     {
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            Composer.Instance.GetExportedValueByTypeName<IMapFileProvider>(Configuration.Config.Get("map-file-provider", typeof(LocalDiskMapFileProvider).Name));
+        }
+
         [Test]
         public void ReaderTest()
         {
