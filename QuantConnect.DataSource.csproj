@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>QuantConnect.DataSource</RootNamespace>
     <AssemblyName>QuantConnect.DataSource.KavoutCompositeFactorBundle</AssemblyName>
     <OutputPath>bin\$(Configuration)</OutputPath>
     <DocumentationFile>$(OutputPath)\QuantConnect.DataSource.KavoutCompositeFactorBundle.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="protobuf-net" Version="3.1.33" />
+    <PackageReference Include="QuantConnect.Common" Version="2.5.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +17,4 @@
     <None Remove="tests\**" />
     <None Remove=".gitignore" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Lean\Common\QuantConnect.csproj" />
-  </ItemGroup>
-
 </Project>
