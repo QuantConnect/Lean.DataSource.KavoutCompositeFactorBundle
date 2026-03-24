@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>QuantConnect.DataSource</RootNamespace>
-    <AssemblyName>QuantConnect.DataSource.KavoutCompositeFactorBundle</AssemblyName>
+    <AssemblyName>QuantConnect.DataSource.Kavout</AssemblyName>
     <OutputPath>bin\$(Configuration)</OutputPath>
-    <DocumentationFile>$(OutputPath)\QuantConnect.DataSource.KavoutCompositeFactorBundle.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\QuantConnect.DataSource.Kavout.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="QuantConnect.Common" Version="2.5.*" />

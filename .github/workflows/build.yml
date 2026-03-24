@@ -24,7 +24,7 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: quantconnect/lean:foundation
-          options: --workdir /__w/Lean.DataSource.KavoutCompositeFactorBundle/Lean.DataSource.KavoutCompositeFactorBundle -v /home/runner/work:/__w
+          options: --workdir /__w/Lean.DataSource.Kavout/Lean.DataSource.Kavout -v /home/runner/work:/__w
           shell: bash
           run: |
             # BuildDataSource
